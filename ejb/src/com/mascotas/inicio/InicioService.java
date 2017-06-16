@@ -56,6 +56,7 @@ public class InicioService {
 		newEstado.setMascota(estado.getMascota());
 		newEstado.setTexto(estado.getTexto());
 		newEstado.setUsuario(estado.getUsuario());
+		newEstado.setImagen(estado.getImagen());
 		inicioRepository.add(newEstado);
 	}
 }

@@ -28,7 +28,7 @@ public class Estado implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
 	@OrderColumn()
 	@Column(nullable = false)
 	private String usuario;
@@ -44,6 +44,17 @@ public class Estado implements Serializable {
 	@OrderColumn()
 	@Column(nullable = false)
 	private Long fecha;
+	
+	@OrderColumn()
+	private String imagen;
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
 
 	public Long getId() {
 		return id;

@@ -3,4 +3,5 @@ export interface Estado {
     mascota: string;
     texto: string;
     fecha: number;
+    imagen: string;
 }

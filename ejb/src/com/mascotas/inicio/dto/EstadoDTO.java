@@ -21,6 +21,19 @@ public class EstadoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	private String usuario;
+	private String mascota;
+	private String texto;
+	private Long fecha;
+	private String imagen;
+	
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
 
 	public Long getId() {
 		return id;
@@ -62,11 +75,6 @@ public class EstadoDTO implements Serializable {
 		this.fecha = fecha;
 	}
 
-	private String usuario;
-	private String mascota;
-	private String texto;
-	private Long fecha;
-
 	/**
 	 * Factorys para crear DTO a partir de Entity
 	 * 
@@ -81,6 +89,7 @@ public class EstadoDTO implements Serializable {
 			result.mascota = estado.getMascota();
 			result.texto = estado.getTexto();
 			result.fecha = estado.getFecha();
+			result.imagen = estado.getImagen();
 			return result;
 		}
 

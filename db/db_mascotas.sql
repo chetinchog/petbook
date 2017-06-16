@@ -16,6 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `estado`
+--
+
+DROP TABLE IF EXISTS `estado`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `estado` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `fecha` bigint(20) NOT NULL,
+  `mascota` varchar(255) NOT NULL,
+  `texto` varchar(255) NOT NULL,
+  `usuario` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `estado`
+--
+
+LOCK TABLES `estado` WRITE;
+/*!40000 ALTER TABLE `estado` DISABLE KEYS */;
+INSERT INTO `estado` VALUES (3,1497592273797,'Lolo','No encuentro su correa..... :(\n','Che'),(4,1497592335938,'Hashtable','Donde está su ID?\n','Che'),(5,1497592557974,'Beto','Por que siempre quiere pegarle a todo el mundo???????\n','CTG'),(6,1497598604174,'Lolo','POR QUE???????????\'\'\'\'\'\n','Che'),(7,1497624490398,'Lolo','Holis\n','Che'),(8,1497625469676,'Lolo','Bueeeeeenas\n','Che'),(9,1497625476065,'Hashtable','Holis\n','Che'),(10,1497629266907,'Lolo','Perripollo\n','Che');
+/*!40000 ALTER TABLE `estado` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `estadocivil`
 --
 
@@ -55,7 +82,7 @@ CREATE TABLE `mascotas` (
   PRIMARY KEY (`id`),
   KEY `FKs71rwc2v71ku2ewxlc5sp9ocg` (`usuario_login`),
   CONSTRAINT `FKs71rwc2v71ku2ewxlc5sp9ocg` FOREIGN KEY (`usuario_login`) REFERENCES `usuario` (`login`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,6 +91,7 @@ CREATE TABLE `mascotas` (
 
 LOCK TABLES `mascotas` WRITE;
 /*!40000 ALTER TABLE `mascotas` DISABLE KEYS */;
+INSERT INTO `mascotas` VALUES (1,'Perro','2017-06-01','Lolo','chetinchog');
 /*!40000 ALTER TABLE `mascotas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +116,7 @@ CREATE TABLE `perfil` (
   KEY `FKqgipe8gfso1e8atsultdtqewc` (`provincia_id`),
   CONSTRAINT `FKgjg0oha2mt6j7yp9ichsebq18` FOREIGN KEY (`login`) REFERENCES `usuario` (`login`),
   CONSTRAINT `FKqgipe8gfso1e8atsultdtqewc` FOREIGN KEY (`provincia_id`) REFERENCES `provincia` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +125,7 @@ CREATE TABLE `perfil` (
 
 LOCK TABLES `perfil` WRITE;
 /*!40000 ALTER TABLE `perfil` DISABLE KEYS */;
-INSERT INTO `perfil` VALUES (1,NULL,NULL,NULL,NULL,NULL,NULL,'tincho'),(2,NULL,NULL,NULL,NULL,NULL,NULL,'tincho2'),(3,NULL,NULL,NULL,NULL,NULL,NULL,'admin'),(4,NULL,NULL,NULL,NULL,NULL,NULL,'tinchom');
+INSERT INTO `perfil` VALUES (1,NULL,NULL,NULL,NULL,NULL,NULL,'tincho'),(2,NULL,NULL,NULL,NULL,NULL,NULL,'tincho2'),(3,NULL,NULL,NULL,NULL,NULL,NULL,'admin'),(4,NULL,NULL,NULL,NULL,NULL,NULL,'tinchom'),(5,NULL,NULL,NULL,NULL,NULL,NULL,'chetinchog');
 /*!40000 ALTER TABLE `perfil` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,7 +168,7 @@ CREATE TABLE `rol` (
   KEY `FK141AFAB062235` (`usuarioId`),
   CONSTRAINT `FK141AFAB062235` FOREIGN KEY (`usuarioId`) REFERENCES `usuario` (`login`),
   CONSTRAINT `FKee1jpu5gpywr41oaauytocl5h` FOREIGN KEY (`usuarioId`) REFERENCES `usuario` (`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149,7 +177,7 @@ CREATE TABLE `rol` (
 
 LOCK TABLES `rol` WRITE;
 /*!40000 ALTER TABLE `rol` DISABLE KEYS */;
-INSERT INTO `rol` VALUES (1,'USER','admin'),(2,'ADMIN','admin'),(3,'USER','tincho'),(4,'USER','tincho2'),(5,'USER','tinchom');
+INSERT INTO `rol` VALUES (1,'USER','admin'),(2,'ADMIN','admin'),(3,'USER','tincho'),(4,'USER','tincho2'),(5,'USER','tinchom'),(6,'USER','chetinchog');
 /*!40000 ALTER TABLE `rol` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,7 +229,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES ('admin','admin@mascotas.com',NULL,'1999-12-31','Administrador','ISMvKXpXpadDiUoOSoAfww=='),('tincho','martinmgancia1@gmail.com',NULL,'2017-06-09','martin','uOsyBxnlgQxtc+Y4Fa1inQ=='),('tincho2','tinchomonzo1995@gmail.com',NULL,'2017-06-09','martin','1FQxw9evTUEKZQZRNcnePg=='),('tinchom','martinmgancia1@gmail.com',NULL,'2017-06-13','Martín','jNM4j/edIOkmEtRhcJBtlQ==');
+INSERT INTO `usuario` VALUES ('admin','admin@mascotas.com',NULL,'1999-12-31','Administrador','ISMvKXpXpadDiUoOSoAfww=='),('chetinchog','chetinchog@yahoo.com',NULL,'2017-06-16','Che','HBZwgLtmYXRdn2jyj+G5NQ=='),('tincho','martinmgancia1@gmail.com',NULL,'2017-06-09','martin','uOsyBxnlgQxtc+Y4Fa1inQ=='),('tincho2','tinchomonzo1995@gmail.com',NULL,'2017-06-09','martin','1FQxw9evTUEKZQZRNcnePg=='),('tinchom','martinmgancia1@gmail.com',NULL,'2017-06-13','Martín','jNM4j/edIOkmEtRhcJBtlQ==');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -214,4 +242,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-16 11:29:20
+-- Dump completed on 2017-06-16 13:16:34

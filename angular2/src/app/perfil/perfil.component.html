@@ -1,10 +1,10 @@
+<h1>PERFIL</h1>
 
-<form name="form" [formGroup]="form" novalidate *ngIf="editar">
-	<br /><br />
+<form name="form" [formGroup]="form" novalidate>
 	<div class="form-group">
 		<label>Nombre: 
 
-			<input [(ngModel)]="nombre" name="nombre" [formControl]="form.controls['nombre']"	
+			<input name="nombre" [formControl]="form.controls['nombre']"
 					type="text" placeholder="Nombre" size="60" />
 
 			<div class="error"
@@ -17,7 +17,7 @@
 	<div class="form-group">
 		<label>Apellido: 
 
-			<input [(ngModel)]="apellido" name="apellido" [formControl]="form.controls['apellido']"
+			<input name="apellido" [formControl]="form.controls['apellido']"
 					type="text" placeholder="Apellido" size="60" />
 
 			<div class="error"
@@ -30,21 +30,21 @@
 	<div class="form-group">
 		<label>Sexo:</label> 
 
-		<select name='sexo' [formControl]="form.controls['sexo']" [(ngModel)]="sexoActivo" >
-					<option *ngFor="let s of sexos" [value]="s.nombre">{{s.nombre}}</option>
+		<select name='sexo' [formControl]="form.controls['sexo']" >
+					<option *ngFor="let s of sexos">{{s}}</option>
 		</select>	
 
 		<div class="error"
-					*ngIf="(form.controls['sexo'].dirty || formSubmitted) && form.controls['sexo'].invalid">
+					*ngIf="(form.controls['provincia'].dirty || formSubmitted) && form.controls['provincia'].invalid">
 						Valor no v&aacute;lido.
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label>Email: 
-			
-			<input [(ngModel)]="email" name="email" [formControl]="form.controls['email']"
-					type="email" placeholder="Email" size="60" />
+
+			<input name="email" [formControl]="form.controls['email']"
+					type="text" placeholder="Email" size="60" />
 
 			<div class="error"
 						*ngIf="(form.controls['email'].dirty || formSubmitted) && form.controls['email'].invalid">
@@ -56,8 +56,8 @@
 	<div class="form-group">
 		<label>Provincia:</label> 
 
-		<select name='provincia' [formControl]="form.controls['provincia']" [(ngModel)]="provinciaActiva" >
-					<option *ngFor="let item of provincias" [value]="item.nombre" >{{item.nombre}}</option>
+		<select name='provincia' [formControl]="form.controls['provincia']" >
+					<option *ngFor="let item of provincias" [value]="item.id" >{{item.nombre}}</option>
 		</select>	
 
 		<div class="error"
@@ -69,7 +69,7 @@
 	<div class="form-group">
 		<label>Direcci&oacute;n: 
 
-			<input [(ngModel)]="direccion" name="direccion" [formControl]="form.controls['direccion']" type="text" placeholder="Direcci&oacute;n" size="60" />	
+			<input name="direccion" [formControl]="form.controls['direccion']" type="text" placeholder="Direcci&oacute;n" size="60" />	
 
 			<div class="error"
 				*ngIf="(form.controls['direccion'].dirty || formSubmitted) && form.controls['direccion'].invalid">
@@ -81,7 +81,7 @@
 	<div class="form-group">
 		<label>Tel&eacute;fono: 
 
-			<input [(ngModel)]="telefono" name="telefono" [formControl]="form.controls['telefono']" type="text" placeholder="Tel&eacute;fono" size="60" />
+			<input name="telefono" [formControl]="form.controls['telefono']" type="text" placeholder="Tel&eacute;fono" size="60" />
 			
 			<div class="error"
 				*ngIf="(form.controls['telefono'].dirty || formSubmitted) && form.controls['telefono'].invalid">
@@ -91,75 +91,31 @@
 	</div>
 
 	<div class="form-group">
+		<label>Ocupaci&oacute;n: 
+
+			<input name="ocupacion" [formControl]="form.controls['ocupacion']" type="text" placeholder="Ocupaci&oacute;n" size="60" />
+			
+			<div class="error"
+				*ngIf="(form.controls['ocupacion'].dirty || formSubmitted) && form.controls['ocupacion'].invalid">
+					Valor no v&aacute;lido.
+			</div>
+		</label>
+	</div>
+
+	<div class="form-group">
 		<label>Estado Civil:</label> 
 
-		<select name='estadoCivil' [formControl]="form.controls['estadoCivil']" [(ngModel)]="estadoCivilActivo">
-					<option *ngFor="let ec of estadosCiviles" [value]="ec.nombre">{{ec.nombre}}</option>
+		<select name='estadoCivil' [formControl]="form.controls['estadoCivil']" >
+					<option *ngFor="let ec of estadosCiviles">{{ec}}</option>
 		</select>	
 
 		<div class="error"
-					*ngIf="(form.controls['estadoCivil'].dirty || formSubmitted) && form.controls['estadoCivil'].invalid">
+					*ngIf="(form.controls['provincia'].dirty || formSubmitted) && form.controls['provincia'].invalid">
 						Valor no v&aacute;lido.
 		</div>
 	</div>
 		
 	<button class="btn btn-success"  (click)="submitForm()"  [disabled]="form.invalid">Guardar</button>
-	<button class="btn btn-default"(click)="guardarPerfil()">Cancelar</button>	
-</form>
-
-<form name="form" [formGroup]="form" novalidate *ngIf="!editar">
-	<br /><br />
-	<div class="form-group">
-		<label>Nombre:  
-			<label>{{nombre}}</label>
-			
-		</label>
-	</div>
-
-	<div class="form-group">
-		<label>Apellido: 
-			<label>{{apellido}}</label>
-
-		</label>
-	</div>
-
-	<div class="form-group">
-		<label>Sexo: 
-			<label>{{sexo}}</label>
-		</label>
-	</div>
-
-	<div class="form-group">
-		<label>Email: 
-
-			<label>{{email}}</label>
-		</label>
-	</div>
-
-	<div class="form-group">
-		<label>Provincia:
-			<label>{{pcia}}</label>
-		</label>
-	</div>
-
-	<div class="form-group">
-		<label>Direcci&oacute;n: 
-
-			<label>{{direccion}}</label>
-		</label>
-	</div>
-	
-	<div class="form-group">
-		<label>Tel&eacute;fono: 
-			<label>{{telefono}}</label>
-		</label>
-	</div>
-
-	<div class="form-group">
-		<label>Estado Civil: 
-			<label>{{estadoCivil}}</label>
-		</label>
-	</div>
-
-	<button class="btn btn-success" (click)="editarPerfil()">Editar</button>	
+	<button class="btn btn-default" [routerLink]="['/']" >Cancelar</button>
+	<button class="btn btn-default" [routerLink]="['/inicio']" >Volver</button>	
 </form>

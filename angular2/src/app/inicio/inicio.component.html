@@ -1,0 +1,47 @@
+<div class="post">
+    <form *ngIf="mascota">
+        <label>
+            Mascota: 
+        </label>
+        <select name="mascota" id="mascota" class="mascota" [(ngModel)]="mascota" >
+            <option *ngFor="let pet of mascotas" [value]="pet.nombre">
+                {{pet.nombre}}
+            </option>
+        </select>
+        <textarea placeholder="¿Qué estás pensando?" [(ngModel)]="text" name="text" (keyup.enter)="post()" ></textarea>
+        <button class="btn btn-success"
+                (click)="post()" >POST</button>
+    </form>
+
+    <button *ngIf="!mascota" class="btn btn-success"
+                (click)="agregarMascota()" >Agregar Mascota</button>
+</div>
+
+<section *ngIf="estados">
+    <article *ngFor="let estado of estados">
+        <div class="head">
+            <h5>
+                {{estado.usuario}}'s
+            </h5>
+            <h4>             
+                {{estado.mascota}}
+            </h4> 
+            <p>
+                {{estado.fecha | date:'medium'}}
+            </p>            
+        </div>
+        <div class="content">
+            <label>
+                    {{estado.texto}}
+            </label>
+        </div>
+        <div class="footer">
+            <!--
+            <img src="assets/paw.png" alt="PAW" (click)="estado.paw = estado.paw + 1;">
+            <p>
+                {{estado.paw}}
+            </p>
+            -->
+        </div>
+    </article>
+</section>

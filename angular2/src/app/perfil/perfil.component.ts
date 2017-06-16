@@ -7,6 +7,10 @@ import { Observable } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 import { Perfil } from '../classes/perfil.class';
 import { Provincia } from '../classes/provincia.class';
+import { SexoService } from '../sexo/sexo.service';
+import { Sexo } from '../classes/sexo.class';
+import { EstadoCivil } from '../classes/estadoCivil.class';
+import { EstadoCivilService } from '../estadoCivil/estadoCivil.service';
 
 
 @Component({
@@ -20,12 +24,24 @@ export class PerfilComponent implements OnInit {
   formSubmitted: boolean;
   
   provincias: Provincia[];
-  sexos = ['Masculino', 'Femenino'];
-  estadosCiviles = ['Soltero', 'Casado', 'Viudo', 'Divorciado'];
+  sexos: Sexo[];
+  estadosCiviles: EstadoCivil[];
+  editar = false;
+  sexoActivo: string;
+  provinciaActiva: string;
+  estadoCivilActivo: string;
+
+  nombre = "Martín";
+  apellido = "Monzo";
+  email = "martinmgancia1@gmail.com";
+  direccion = "Portugal 1439, GC";
+  telefono = "4527059";
 
   constructor(fb: FormBuilder,
     private provinciaService: ProvinciaService,
+    private sexoService: SexoService,
     private perfilService: PerfilService,
+    private estadoCivilService: EstadoCivilService,
     private route: ActivatedRoute,
     private router: Router) {
     this.form = fb.group({
@@ -36,23 +52,38 @@ export class PerfilComponent implements OnInit {
       'apellido': [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       'direccion': [null, Validators.required],
       'telefono': [null, Validators.required],
-      'ocupacion': [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       'sexo': [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       'estadoCivil': [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
 
     })
-    this.form.patchValue({ id: null, nombre: '', email: '', provincia: '', direccion: '', telefono: '' });
+    this.form.patchValue({ id: null, nombre: '', apellido: '', sexo: '', email: '', provincia: '', direccion: '', telefono: '', estadoCivil: '' });
   }
 
   ngOnInit() {
     this.provinciaService.getProvincias()
-      .then(provincias => this.provincias = provincias)
+      .then(provincias => {
+        this.provincias = provincias;
+        this.provinciaActiva = provincias[0].nombre;
+      })
+      .catch(error => this.errorMessage = <any>error);
+
+    this.sexoService.getSexos()
+      .then(sexos =>{
+        this.sexos = sexos;
+        this.sexoActivo = sexos[0].nombre;
+      })
+      .catch(error => this.errorMessage = <any>error);
+
+    this.estadoCivilService.getEstadosCiviles()
+      .then(estadosCiviles => {
+        this.estadosCiviles = estadosCiviles;
+        this.estadoCivilActivo = estadosCiviles[0].nombre;
+      })
       .catch(error => this.errorMessage = <any>error);
 
     this.perfilService.buscarPerfil()
       .then(perfil => this.form.patchValue(perfil))
       .catch(error => this.errorMessage = <any>error);
-
   }
 
   submitForm() {
@@ -85,6 +116,14 @@ export class PerfilComponent implements OnInit {
        } else {
            toastr.error( "Error al grabar el perfil.", data.message );
        }*/
+  }
+
+  editarPerfil() {
+    this.editar = true;
+  }
+
+  guardarPerfil(){
+    this.editar = false;
   }
 }
 

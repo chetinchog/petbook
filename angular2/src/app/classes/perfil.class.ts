@@ -9,7 +9,6 @@ export interface Perfil {
   /* Agregar al EntityBean
   apellido: string,
   fechaNacimiento: string;
-  ocupacion: string;
   genero: string;
   estadoCivil: string;
   descripcion: string;

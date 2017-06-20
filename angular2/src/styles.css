@@ -3,6 +3,26 @@
     transition: all 0.3s ease-in-out 0s;
 }
 
+.masc {
+	box-shadow: 3px 3px 20px black;
+	border-radius: 10px;
+}
+
+.container {
+	padding: 10px;
+}
+
+.perfil {
+	box-sizing: border-box;
+	background-color: lightcyan;
+	border-radius: 10px;
+	box-shadow: 3px 3px 20px black;
+	text-align: center;
+	padding: 10px;
+	width: 80%;
+	margin: 30px 10%;
+}
+
 body {
 	min-width: 410px;
 	padding-top: 30px;

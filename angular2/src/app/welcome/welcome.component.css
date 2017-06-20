@@ -22,10 +22,15 @@
     height: 200px;
     padding: 63px 0;
     color: white;
-    background-color: #449b44;
-    box-shadow: 0px 3px 20px black; 
+    background-image: url('/assets/line.png');
+    background-size: 3px;
+    box-shadow: 0px 3px 20px black;
+    background-color: #210042;
+    opacity: 1;
+    text-shadow: 10px 10px 20px black;
 }
 
 .texto:hover {
-    background-color: #64bb64;
+    opacity: 0.9;
+    text-shadow: 5px 5px 5px black;
 }

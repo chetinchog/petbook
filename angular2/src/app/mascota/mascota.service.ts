@@ -28,6 +28,15 @@ export class MascotaService extends RestBaseService {
       .catch(this.handleError);
   }
 
+  findMascota(id: number): Promise<Mascota> {
+    return this.http.get(MascotaService.serverUrl + this.url + '/detalle/' + id, this.getRestHeader())
+      .toPromise()
+      .then(response => {
+        return response.json() as Mascota;
+      })
+      .catch(this.handleError);
+  }
+
   guardarMascota(value: Mascota): Promise<Mascota> {
     if (value.id) {
       return this.http.post(MascotaService.serverUrl + this.url + '/' + value.id, JSON.stringify(value), this.getRestHeader())

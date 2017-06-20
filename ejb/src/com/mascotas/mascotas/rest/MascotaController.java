@@ -78,6 +78,27 @@ public class MascotaController {
 	}
 
 	/**
+	 * Busca las mactoas del usuario logueado.
+	 * 
+	 * @return
+	 * @throws NamingException
+	 */
+	@Path("/detalle/{id}")
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response findMascota(@PathParam("id") Integer id) throws NamingException {
+		try {
+			return Response.ok().entity(mascotaService.findMascota(id)).build();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			return Response.status(500).entity(FormError.processError(e)).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(500).entity(FormError.processError(e)).build();
+		}
+	}
+	
+	/**
 	 * Actualiza o agrega una mascota a la base de datos.
 	 * 
 	 * @return

@@ -92,4 +92,8 @@ public class MascotaService {
 
 		mascotaRepository.remove(mascotaRepository.get(id));
 	}
+
+	public Object findMascota(Integer id) {
+		return MascotaDTO.Factory.get(mascotaRepository.get(id));
+	}
 }

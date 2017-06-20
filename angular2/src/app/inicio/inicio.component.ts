@@ -136,7 +136,7 @@ export class InicioComponent implements OnInit {
   }
 
   verMascota(id){
-    this.mascotasService.buscarMascota(id)
+    this.mascotasService.findMascota(id)
           .then(mascota => this.detalleMascota = mascota)
           .catch(error => this.errorMessage = <any>error);
   }

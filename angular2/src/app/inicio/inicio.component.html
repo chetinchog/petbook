@@ -1,0 +1,77 @@
+<div class="page">
+    <div class="post">
+        <form *ngIf="mascotas">
+            <label for="mascota">
+                Mascota: 
+            </label>
+            <select name="mascota" id="mascota" class="mascota" [(ngModel)]="idMascota">
+                <option *ngFor="let pet of mascotas" [value]="pet.id">
+                    {{pet.nombre}}
+                </option>
+            </select>
+            <img src="assets/add.png" alt="+" (click)="agregarMascota()">
+            <textarea placeholder="¿Qué estás pensando?" [(ngModel)]="text" name="text" maxlength="255" [style.background-size]="contador+'% 4px'" (keypress)="contar()" (keyup)="contar()"></textarea>
+            
+            <button class="btn btn-success publicar" (click)="post()" >Publicar</button>
+
+            <input type="file"
+                    id="filePicker" (change)="cargar($event)">
+            
+            <label for="filePicker" class="btn btn-success cargarImagen">{{fileName}}</label>
+        </form>
+
+        <button *ngIf="!mascotas" class="btn btn-success add"
+                    (click)="agregarMascota()" >Agregar Mascota</button>
+    </div>
+
+    <section *ngIf="estados">
+        <article *ngFor="let estado of estados" class="estado">
+            <div class="head">
+                <h5>
+                    {{estado.usuario}}'s
+                </h5>
+                <h4 (click)="verMascota(estado.idMascota)">             
+                    {{estado.mascota}}
+                </h4> 
+                <div *ngIf="nombre==estado.usuario">
+                    <img src="assets/delete.png" class="delete" alt="X" (click)="delete(estado.id)"/>
+                </div>
+                <p>
+                    {{estado.fecha | date:'medium'}}
+                </p>      
+            </div>
+            <div class="content">
+                <label>
+                        {{estado.texto}}
+                </label>
+            </div>
+            <img *ngIf="estado.imagen" class="img" [src]="'data:image/jpg;base64,'+estado.imagen"/>
+            <div class="footer">
+                <!--
+                <img src="assets/paw.png" alt="PAW" (click)="estado.paw = estado.paw + 1;">
+                <p>
+                    {{estado.paw}}
+                </p>
+                -->
+            </div>
+        </article>
+    </section>
+</div>
+
+<div *ngIf="detalleMascota" class="detalleMascota" (click)="cerrarDetalle()">
+    <h2>
+        {{detalleMascota.nombre}}
+    </h2>
+    <p>
+        <label>
+            Fecha Nacimiento: 
+        </label>
+        {{detalleMascota.fechaNacimiento}}
+    </p>
+    <p>
+        <label>
+            Descripción: 
+        </label>
+        {{detalleMascota.descripcion}}
+    </p>
+</div>

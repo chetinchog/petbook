@@ -1,0 +1,308 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.add {
+    box-sizing: border-box;
+    padding: 6px;
+    box-shadow: 2px 2px 10px black;
+    font-size: 18px;
+}
+
+.post {
+    box-sizing: border-box;
+    float: left;
+    width: 100%;
+    display: block;
+    margin: 0px 0px 20px 0px;
+    text-align: center;
+    padding: 25px 20% 15px 20%;
+    background-color: #17aa94;
+    background-image: url('/assets/paw2.png');
+    background-size: 5%;    
+    box-shadow: inset 0px -3px 100px #67fae4;
+}
+
+.post form {
+    display: block;
+    width: 100%;    
+    text-align: center;
+    float: left;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: inset 1px 1px 20px black;
+}
+
+.post label {
+    display: block;
+    width: 20%;
+    margin-bottom: 10px;
+    padding: 2px;
+    float: left;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.post .mascota {
+    display: block;
+    width: 60%;
+    margin-bottom: 10px;
+    padding: 2px;
+    float: left;
+    border: none;
+    border-bottom: 1px solid #449b44;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.post img {
+    box-sizing: border-box;
+    padding: 5px;
+    height: 30px;
+    background-color: #449b44;
+    border-radius: 50%;
+    box-shadow: 2px 2px 10px black;
+    cursor: pointer;
+}
+
+.post img:hover {
+    box-shadow: inset 2px 2px 10px black;
+}
+
+.post textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 2px;
+    border: none;
+    border-bottom: 1px solid #449b44;
+    cursor: pointer;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 30px;
+   
+    background-image: linear-gradient(to right, #449b44, #449b44, green);
+    background-repeat: no-repeat;
+    background-position: left bottom, 4px 0;
+}
+
+.post textarea:focus {
+    outline: 0;
+    cursor: text;
+    border-bottom: 1px solid #00954a;
+    box-shadow: inset 1px 1px 30px #f0f9f0;
+    border-radius: 5px;
+    height: 65px;
+}
+
+.post .publicar {
+    padding: 2px;
+    float: right;
+    width: 30%;
+    height: 30px;
+}
+
+.post .publicar:focus {
+    outline: 0;
+}
+
+.post input[type="file"] {
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.post .cargarImagen {
+    padding: 3px 0px 0px 0px;
+    float: left;
+    width: 69%;
+    height: 30px;
+}
+
+section {
+    box-sizing: border-box;
+    padding: 2%;
+    width: 100%;
+    display: block;
+    float: left;
+    margin-top: -20px;
+    background-image: url('/assets/paw.png');
+    background-size: 8%;
+    background-color: #ffd9ff;
+    box-shadow: inset 0px 3px 20px black;
+}
+
+article {
+    box-sizing: border-box;
+    width: 50%;
+    margin: 1% 25%;
+    display: block;
+    float: left;
+    border-radius: 5px;
+    box-shadow: 2px 2px 20px #2c2c2c;
+    background-color: white;
+}
+
+article:hover {
+    box-shadow: 3px 3px 30px black;
+}
+
+.head {
+    color: white;
+    background-color: #449b44;
+    display: block;
+    float: left;
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 2px;
+}
+
+.head * {
+    display: block;
+    float: left;    
+}
+
+.head h5 {
+    box-sizing: border-box;
+    height: 100%;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: right;
+}
+
+.head h4 {
+    font-size: 20px;
+    display: block;
+}
+
+.head h4:hover {
+    text-shadow: 0px 0px 10px white;
+    cursor: pointer;
+}
+
+.head p {
+    display: block;
+    float: right;
+    padding-top: 3px;
+    padding-right: 10px;
+}
+
+.content {
+    background-color: white;
+    display: block;
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 5px;
+    word-break: break-all;
+}
+
+.footer {
+    background-color: white;
+    display: block;
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer img {
+    display: block;
+    float: right;
+    background-color: #449b44;
+    height: 25px;
+    border-radius: 100%;
+    padding: 2px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin: 0px 10px 10px 10px;
+}
+
+.footer p {
+    display: block;
+    float: right;
+    box-sizing: border-box;
+    padding-top: 2px;
+}
+
+.estado .img {
+    width: 60%;
+    margin: 0px 20% 15px 20%;
+}
+
+.delete {
+    display: block !important;
+    float: right !important;
+    box-sizing: border-box;
+    height: 20px !important;
+    width: 20px !important;
+    margin: 2px 2px 0px 0px !important;
+    padding: 0px !important;
+    border-radius: 50% !important;
+    box-shadow: 2px 2px 5px #282828 !important;
+    cursor: pointer !important;
+}
+
+.head div {
+    display: block;
+    float: right;
+}
+
+.delete:hover {
+    box-shadow: 3px 3px 10px black !important;
+    background-color: red;
+}
+
+.detalleMascota {
+    position: fixed;
+    top: 10%;
+    left: 10%;
+    height: 80%;
+    width: 80%;
+    background: #ddfed8;
+    border-radius: 20px;
+    box-shadow: 5px 5px 20px black;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    min-width: 300px;
+}
+
+.detalleMascota label {
+    font-size: 15px;
+    color: black;
+    text-shadow: none;
+    width: 100%;
+    min-width: 300px;
+}
+
+.detalleMascota h2 {
+    margin: 0px 0px 40px 0px;
+    color: white;
+    text-shadow: 0px 0px 10px #003300;
+    font-weight: 400;
+    font-size: 500%;
+    border-bottom: 1px solid #003300;
+    background-color: #ee6804;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0px 3px 7px black;
+    width: 100%;
+    min-width: 300px;
+}
+
+.detalleMascota p {
+    margin: 10px;
+    font-size: 40px;
+    text-shadow: 0px 0px 10px #449b44;
+    width: 100%;
+    min-width: 300px;
+}

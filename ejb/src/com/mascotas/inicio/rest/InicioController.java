@@ -47,6 +47,7 @@ public class InicioController {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getEstados(@Context HttpServletRequest httpRequest) throws NamingException {
 		try {
+			System.out.println("CONSOLE: Estado -> Get");
 			return Response.ok().entity(inicioService.findEstados()).build();
 		} catch (BusinessException e) {
 			e.printStackTrace();
@@ -68,6 +69,7 @@ public class InicioController {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getLastEstados(@PathParam("fecha") Long id) throws NamingException {
 		try {
+			System.out.println("CONSOLE: Estado -> Last");
 			return Response.ok().entity(inicioService.findLastEstados(id)).build();
 		} catch (BusinessException e) {
 			e.printStackTrace();
@@ -90,6 +92,7 @@ public class InicioController {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response newEstado(EstadoDTO estadoDTO) throws NamingException {
 		try {
+			System.out.println("CONSOLE: Estado -> Post");
 			inicioService.newEstado(estadoDTO);
 			return Response.ok().build();
 		} catch (BusinessException e) {
@@ -113,6 +116,7 @@ public class InicioController {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response eliminarMascota(@PathParam("id") Long id) throws NamingException {
 		try {
+			System.out.println("CONSOLE: Estado -> Delete");
 			inicioService.eliminarMascota(id);
 			return Response.ok().build();
 		} catch (BusinessException e) {

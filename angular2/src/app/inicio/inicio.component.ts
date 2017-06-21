@@ -156,7 +156,8 @@ export class InicioComponent implements OnInit {
   }
 
   reloadLast() {
-    this.inicioService
+    if (this.estados[0]) {
+      this.inicioService
       .getLastEstados(this.estados[0].fecha)
       .then(
         estados => {
@@ -168,5 +169,6 @@ export class InicioComponent implements OnInit {
           this.errorMessage = <any>error
         }
       )
+    }
   }
 }

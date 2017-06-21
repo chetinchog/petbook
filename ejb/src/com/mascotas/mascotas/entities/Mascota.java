@@ -14,6 +14,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.mascotas.seguridad.entities.Usuario;
+import com.mascotas.sexo.entities.Sexo;
+import com.mascotas.tipoanimal.entities.TipoAnimal;
 
 /**
  * Mascotas
@@ -37,9 +39,32 @@ public class Mascota implements Serializable {
 	private java.util.Date fechaNacimiento;
 
 	private String descripcion;
+	private String textoPerdido;
+
+	public String getTextoPerdido() {
+		return textoPerdido;
+	}
+
+	public void setTextoPerdido(String textoPerdido) {
+		this.textoPerdido = textoPerdido;
+	}
 
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	private Usuario usuario;
+
+	@ManyToOne(cascade = CascadeType.REFRESH)
+	private TipoAnimal tipoAnimal;
+	
+	@ManyToOne(cascade = CascadeType.REFRESH)
+	private Sexo sexo;
+
+	public Sexo getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(Sexo sexo) {
+		this.sexo = sexo;
+	}
 
 	public Integer getId() {
 		return id;
@@ -80,4 +105,13 @@ public class Mascota implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	public TipoAnimal getTipoAnimal() {
+		return tipoAnimal;
+	}
+
+	public void setTipoAnimal(TipoAnimal tipoAnimal) {
+		this.tipoAnimal = tipoAnimal;
+	}
+
 }

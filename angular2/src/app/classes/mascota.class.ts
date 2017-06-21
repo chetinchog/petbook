@@ -1,15 +1,12 @@
-//import { TipoAnimal } from '../classes/tipoAnimal.class';
+import { TipoAnimal } from '../classes/tipoAnimal.class';
+import { Sexo } from '../classes/sexo.class';
 
 export interface Mascota {
   id: number;
   nombre: string;
   fechaNacimiento: string;
   descripcion: string;
-
-  /* Agregar a EntityBean
-  tipoAnimal: TipoAnimal;
-  peso: number;
-  indicadorPerdido: boolean;
+  tipoAnimal: number;
+  sexo: number;
   textoPerdido: string;
-  */
 }

@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { APP_BASE_HREF } from '@angular/common';
-
 import { routing } from './app.routes';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -21,6 +20,9 @@ import { RegistrarUsuarioComponent } from './usuario/registrar-usuario.component
 import { DatePickerModule } from 'ng2-datepicker';
 import { InicioComponent } from './inicio/inicio.component';
 import { InicioService } from './inicio/inicio.service';
+import { SexoService } from './sexo/sexo.service';
+import { EstadoCivilService } from './estadoCivil/estadoCivil.service';
+import { TipoAnimalService } from './tipoAnimal/tipoAnimal.service';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,12 @@ import { InicioService } from './inicio/inicio.service';
     ProvinciaService,
     PerfilService,
     InicioService,
+
+    SexoService,
+
+    EstadoCivilService,
+
+    TipoAnimalService,
     { 
       provide: APP_BASE_HREF, 
       useValue: environment.baseHref 

@@ -50,6 +50,17 @@ public class ProvinciasRepository implements Repositorio<Integer, Provincia> {
 		}
 		return result;
 	}
+	
+	public Provincia getProvincia(Integer id) {
+		String q = "SELECT p from " + Provincia.class.getName() + " p WHERE p.id = :id";
+		TypedQuery<Provincia> query = entityManager.createQuery(q, Provincia.class);
+		query.setParameter("id", id);
+		List<Provincia> result = query.getResultList();
+		if (result != null && result.size() > 0) {
+			return result.get(0);
+		}
+		return null;
+	} 
 
 	@Override
 	public long size() {

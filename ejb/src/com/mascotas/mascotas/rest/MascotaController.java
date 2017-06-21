@@ -45,8 +45,32 @@ public class MascotaController {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response findMascotoas(@Context HttpServletRequest httpRequest) throws NamingException {
 		try {
+			System.out.println("Mascota -> GET/");
 			return Response.ok().entity(
 					mascotaService.findForLogin(httpRequest.getUserPrincipal().getName())).build();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			return Response.status(500).entity(FormError.processError(e)).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(500).entity(FormError.processError(e)).build();
+		}
+	}
+	
+	/**
+	 * Busca las mactoas del usuario logueado.
+	 * 
+	 * @return
+	 * @throws NamingException
+	 */
+	@Path("/nombre/")
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response findMascotasNombre(@Context HttpServletRequest httpRequest) throws NamingException {
+		try {
+			System.out.println("Mascota -> GET/nombre/");
+			return Response.ok().entity(
+					mascotaService.findMascotaNombre(httpRequest.getUserPrincipal().getName())).build();
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			return Response.status(500).entity(FormError.processError(e)).build();
@@ -67,6 +91,7 @@ public class MascotaController {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response findMasctoa(@Context HttpServletRequest httpRequest, @PathParam("id") Integer id) throws NamingException {
 		try {
+			System.out.println("Mascota -> GET/id");
 			return Response.ok().entity(mascotaService.findById(httpRequest.getUserPrincipal().getName(), id)).build();
 		} catch (BusinessException e) {
 			e.printStackTrace();
@@ -77,27 +102,6 @@ public class MascotaController {
 		}
 	}
 
-	/**
-	 * Busca las mactoas del usuario logueado.
-	 * 
-	 * @return
-	 * @throws NamingException
-	 */
-	@Path("/detalle/{id}")
-	@GET
-	@Produces({ MediaType.APPLICATION_JSON })
-	public Response findMascota(@PathParam("id") Integer id) throws NamingException {
-		try {
-			return Response.ok().entity(mascotaService.findMascota(id)).build();
-		} catch (BusinessException e) {
-			e.printStackTrace();
-			return Response.status(500).entity(FormError.processError(e)).build();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return Response.status(500).entity(FormError.processError(e)).build();
-		}
-	}
-	
 	/**
 	 * Actualiza o agrega una mascota a la base de datos.
 	 * 
@@ -112,6 +116,7 @@ public class MascotaController {
 			@PathParam("id") Integer id, 
 			MascotaDTO mascotaDTO) throws NamingException {
 		try {
+			System.out.println("Mascota -> POST/id");
 			int mascotaId = mascotaService.actualizarMascota(httpRequest.getUserPrincipal().getName(), mascotaDTO);
 			return Response.ok().entity(mascotaService.findById(httpRequest.getUserPrincipal().getName(), mascotaId)).build();
 		} catch (BusinessException e) {
@@ -136,6 +141,7 @@ public class MascotaController {
 	public Response actualizarMascota(@Context HttpServletRequest httpRequest, 
 			@PathParam("id") Integer id) throws NamingException {
 		try {
+			System.out.println("Mascota -> DELETE/id");
 			mascotaService.eliminarMascota(httpRequest.getUserPrincipal().getName(), id);
 			return Response.ok().build();
 		} catch (BusinessException e) {
@@ -159,8 +165,30 @@ public class MascotaController {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response agregarMascota(@Context HttpServletRequest httpRequest, MascotaDTO mascotaDTO) throws NamingException {
 		try {
+			System.out.println("Mascota -> POST/");
 			int id = mascotaService.actualizarMascota(httpRequest.getUserPrincipal().getName(), mascotaDTO);
 			return Response.ok().entity(mascotaService.findById(httpRequest.getUserPrincipal().getName(), id)).build();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			return Response.status(500).entity(FormError.processError(e)).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(500).entity(FormError.processError(e)).build();
+		}
+	}
+	
+	/**
+	 * Busca las mactoas del usuario logueado.
+	 * 
+	 * @return
+	 * @throws NamingException
+	 */
+	@Path("/detalle/{id}")
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response findMascota(@PathParam("id") Integer id) throws NamingException {
+		try {
+			return Response.ok().entity(mascotaService.findMascota(id)).build();
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			return Response.status(500).entity(FormError.processError(e)).build();

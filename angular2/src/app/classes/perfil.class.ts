@@ -1,17 +1,11 @@
 export interface Perfil {
-  id: string;
+  id: number;
   nombre: string;
-  provincia: string;
+  apellido: string;
+  provincia: number;
   email: string;
   direccion: string;
-  telefono: string
-
-  /* Agregar al EntityBean
-  apellido: string,
-  fechaNacimiento: string;
-  ocupacion: string;
-  genero: string;
-  estadoCivil: string;
-  descripcion: string;
-  */
+  telefono: string;
+  sexo: number;
+  estadoCivil: number;
 }

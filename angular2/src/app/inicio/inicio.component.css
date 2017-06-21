@@ -275,6 +275,7 @@ article:hover {
     margin: 0px;
     padding: 0px;
     min-width: 300px;
+    cursor: pointer;
 }
 
 .detalleMascota label {

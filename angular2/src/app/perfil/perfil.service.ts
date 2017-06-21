@@ -27,4 +27,16 @@ export class PerfilService extends RestBaseService {
       })
       .catch(this.handleError);
   }
+
+  newPerfil(perfil: Perfil){
+    this.http
+      .post(
+        PerfilService.serverUrl + this.perfilUrl,
+        JSON.stringify(perfil),
+        this.getRestHeader()
+      )
+      .toPromise()
+      .then()
+      .catch();
+  }
 }

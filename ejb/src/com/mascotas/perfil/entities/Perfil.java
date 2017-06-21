@@ -11,8 +11,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.mascotas.estadocivil.entities.EstadoCivil;
 import com.mascotas.provincias.entites.Provincia;
 import com.mascotas.seguridad.entities.Usuario;
+import com.mascotas.sexo.entities.Sexo;
 
 /**
  * Perfil de usuario
@@ -27,12 +29,11 @@ public class Perfil implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
 	private String nombre;
-
+	private String apellido;
 	private String telefono;
-
 	private String email;
+	private String direccion;
 
 	@OneToOne(cascade = CascadeType.REFRESH, optional = false)
 	@JoinColumn(name = "login", unique = true, nullable = false, updatable = false)
@@ -41,9 +42,19 @@ public class Perfil implements Serializable {
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	private Provincia provincia;
 
-	private String direccion;
+	@ManyToOne(cascade = CascadeType.REFRESH)
+	private Sexo sexo;
 
-	private String imagen;
+	@ManyToOne(cascade = CascadeType.REFRESH)
+	private EstadoCivil estadoCivil;
+
+	public Integer getId() { 
+		return id;
+	}
+
+	public void setId(Integer id){
+		this.id = id;
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -53,20 +64,12 @@ public class Perfil implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public String getTelefono() {
-		return telefono;
+	public String getApellido() {
+		return apellido;
 	}
 
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 	public Provincia getProvincia() {
@@ -77,6 +80,22 @@ public class Perfil implements Serializable {
 		this.provincia = provincia;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
 	public String getDireccion() {
 		return direccion;
 	}
@@ -85,16 +104,20 @@ public class Perfil implements Serializable {
 		this.direccion = direccion;
 	}
 
-	public String getImagen() {
-		return imagen;
+	public Sexo getSexo() {
+		return sexo;
 	}
 
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
+	public void setSexo(Sexo sexo) {
+		this.sexo = sexo;
+	}	
+
+	public EstadoCivil getEstadoCivil() {
+		return estadoCivil;
 	}
 
-	public Integer getId() {
-		return id;
+	public void setEstadoCivil(EstadoCivil estadoCivil) {
+		this.estadoCivil = estadoCivil;
 	}
 
 	public Usuario getUsuario() {

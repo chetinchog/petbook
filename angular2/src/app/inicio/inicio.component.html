@@ -71,6 +71,12 @@
         </label>
         {{detalleMascota.descripcion}}
     </p>
+    <p *ngIf="detalleMascota.textoperdido!=null">
+        <label>
+            Perdido: 
+        </label>
+        {{detalleMascota.textoPerdido}}
+    </p>
 </div>
 
 <img class="reload" src="assets/reload.png" (click)="reloadLast()" />

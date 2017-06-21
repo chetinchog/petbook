@@ -43,6 +43,7 @@ public class PerfilController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response findCurrent(@Context HttpServletRequest httpRequest) throws NamingException {
 		try {
+			System.out.println("Usuario: ");
 			return Response.ok().entity(perfilService.findForLogin(httpRequest.getUserPrincipal().getName())).build();
 		} catch (BusinessException e) {
 			e.printStackTrace();
@@ -65,6 +66,7 @@ public class PerfilController {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response actualizarPerfil(@Context HttpServletRequest httpRequest, ActualizarPerfilDTO perfilActualizado) throws NamingException {
 		try {
+			System.out.println("Usuario: ");
 			perfilService.actualizarPerfil(httpRequest.getUserPrincipal().getName(), perfilActualizado);
 			return Response.ok().entity(perfilService.findForLogin(httpRequest.getUserPrincipal().getName())).build();
 		} catch (BusinessException e) {

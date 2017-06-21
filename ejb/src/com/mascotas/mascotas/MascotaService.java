@@ -13,10 +13,15 @@ import javax.ejb.TransactionManagementType;
 import com.mascotas.application.exceptions.BusinessException;
 import com.mascotas.application.utils.StringUtils;
 import com.mascotas.mascotas.dto.MascotaDTO;
+import com.mascotas.mascotas.dto.MascotaNombreDTO;
 import com.mascotas.mascotas.entities.Mascota;
 import com.mascotas.mascotas.repository.MascotaRepository;
 import com.mascotas.seguridad.entities.Usuario;
 import com.mascotas.seguridad.repository.UsuariosRepository;
+import com.mascotas.sexo.entities.Sexo;
+import com.mascotas.sexo.repository.SexoRepository;
+import com.mascotas.tipoanimal.entities.TipoAnimal;
+import com.mascotas.tipoanimal.repository.TipoAnimalRepository;
 
 /**
  * Servicios de acceso a las Mascotas del Usuario
@@ -33,6 +38,12 @@ public class MascotaService {
 
 	@EJB
 	private MascotaRepository mascotaRepository;
+	
+	@EJB
+	private SexoRepository sexoRepository;
+	
+	@EJB
+	private TipoAnimalRepository tipoAnimalRepository;
 
 	@EJB
 	private MascotaServiceValidations mascotaValidations;
@@ -48,6 +59,18 @@ public class MascotaService {
 
 		return MascotaDTO.Factory.get(mascotas);
 	}
+	
+	/**
+	 * Busca las Mascotas del usuario por login de usuario.
+	 * 
+	 */
+	public List<MascotaNombreDTO> findMascotaNombre(String login) throws BusinessException {
+		//mascotaValidations.validarFindForLogin(login);
+
+		List<Mascota> mascotas = mascotaRepository.getByUsuario(login);
+
+		return MascotaNombreDTO.Factory.get(mascotas);
+	}
 
 	/**
 	 * Actualiza los datos basicos de las mascotas.
@@ -55,7 +78,7 @@ public class MascotaService {
 	 */
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public int actualizarMascota(String login, MascotaDTO mascota) throws BusinessException {
-		mascotaValidations.validarActualizarMascota(login, mascota);
+		//mascotaValidations.validarActualizarMascota(login, mascota);
 
 		Mascota mascotaEditada = null;
 		if (mascota.getId() != null) {
@@ -77,13 +100,21 @@ public class MascotaService {
 		} catch (Exception e) {
 		}
 		mascotaEditada.setNombre(mascota.getNombre());
+		Sexo s = sexoRepository.get(mascota.getSexo());
+		mascotaEditada.setSexo(s);
+		
+		TipoAnimal ta = tipoAnimalRepository.get(mascota.getTipoAnimal());
+		mascotaEditada.setTipoAnimal(ta);
+		
+		mascotaEditada.setTextoPerdido(mascota.getTextoPerdido());
 
 		return mascotaEditada.getId();
 	}
 
 	public MascotaDTO findById(String login, Integer id) throws BusinessException {
-		mascotaValidations.validarFindById(login, id);
-
+		System.out.println("login: "+login+" y id: "+id);
+		//mascotaValidations.validarFindById(login, id);
+		
 		return MascotaDTO.Factory.get(mascotaRepository.get(id));
 	}
 
@@ -92,7 +123,7 @@ public class MascotaService {
 
 		mascotaRepository.remove(mascotaRepository.get(id));
 	}
-
+	
 	public Object findMascota(Integer id) {
 		return MascotaDTO.Factory.get(mascotaRepository.get(id));
 	}

@@ -8,12 +8,15 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 import com.mascotas.application.rest.CORSFilter;
+import com.mascotas.estadocivil.rest.EstadoCivilController;
 import com.mascotas.inicio.rest.InicioController;
 import com.mascotas.mascotas.rest.MascotaController;
 import com.mascotas.perfil.rest.PerfilController;
 import com.mascotas.provincias.rest.ProvinciaController;
 import com.mascotas.seguridad.rest.SeguridadController;
 import com.mascotas.seguridad.rest.UsuariosControler;
+import com.mascotas.sexo.rest.SexoController;
+import com.mascotas.tipoanimal.rest.TipoAnimalController;
 
 /**
  * Configura los servicios rest en el contenedor WEB.
@@ -25,6 +28,6 @@ import com.mascotas.seguridad.rest.UsuariosControler;
 public class ApplicationConfig extends Application {
 	public Set<Class<?>> getClasses() {
 		return new HashSet<Class<?>>(Arrays.asList(CORSFilter.class, UsuariosControler.class, SeguridadController.class,
-				ProvinciaController.class, PerfilController.class, MascotaController.class, InicioController.class));
+				ProvinciaController.class, PerfilController.class, MascotaController.class, InicioController.class, SexoController.class, EstadoCivilController.class, TipoAnimalController.class));
 	}
 }

@@ -9,6 +9,11 @@
 		<class>com.mascotas.seguridad.entities.Rol</class>
 		<class>com.mascotas.seguridad.entities.Usuario</class>
 		<class>com.mascotas.inicio.entities.Estado</class>
+				<class>com.mascotas.sexo.entities.Sexo</class>
+				<class>com.mascotas.estadocivil.entities.EstadoCivil</class>
+				<class>com.mascotas.tipoanimal.entities.TipoAnimal</class>
+
+
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />

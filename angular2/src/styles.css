@@ -3,11 +3,47 @@
     transition: all 0.3s ease-in-out 0s;
 }
 
+.perdido {
+	box-sizing: border-box;
+	width: 90%;
+}
+
 .masc {
-	box-shadow: 3px 3px 20px black;
-	border-radius: 10px;
-	text-align: center;
-	margin: 40px auto;
+	display: block;
+	float: left;
+	box-shadow: 3px 3px 20px black !important;
+	border-radius: 10px !important;
+	text-align: center !important;
+	margin: 40px auto !important;
+	box-sizing: border-box !important;
+	width: 100% !important;
+}
+
+.masc th, .masc td, .text {
+	display: block;
+	float: left;
+	width: 15%;
+	margin: 0px;
+	overflow: hidden;
+}
+
+.masc th {
+	height: 60px;
+}
+
+.masc td {
+	height: 100px;
+}
+
+.text img {
+	width: 100% !important;
+}
+
+.text {
+	width: 8% !important;
+	padding:  0;
+	margin: 0;
+	cursor: pointer;
 }
 
 .container {
@@ -21,8 +57,8 @@
 	box-shadow: 3px 3px 20px black;
 	text-align: center;
 	padding: 10px;
-	width: 80%;
-	margin: 30px 10%;
+	width: 90%;
+	margin: 30px 5%;
 	text-align: center;
 }
 

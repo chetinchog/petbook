@@ -10,6 +10,8 @@ import javax.persistence.TypedQuery;
 
 import com.mascotas.application.repository.Repositorio;
 import com.mascotas.mascotas.entities.Mascota;
+import com.mascotas.sexo.entities.Sexo;
+import com.mascotas.tipoanimal.entities.TipoAnimal;
 
 /**
  * Repositorio de Almacenamiento de Mascotas del Usuario.
@@ -54,5 +56,9 @@ public class MascotaRepository implements Repositorio<Integer, Mascota> {
 		TypedQuery<Mascota> query = entityManager.createQuery(q, Mascota.class);
 		query.setParameter("login", login);
 		return query.getResultList();
+	}
+	
+	public String getTipoAnimal(Integer id) {
+		return entityManager.find(TipoAnimal.class, id).getNombre(); 
 	}
 }

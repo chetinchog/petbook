@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.List;
 
 import com.mascotas.perfil.entities.Perfil;
-import com.mascotas.provincias.dto.ProvinciaDTO;
 
 /**
  * Perfil de usuario
@@ -18,18 +17,14 @@ public class PerfilDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-
 	private String nombre;
-
-	private String telefono;
-
+	private String apellido;
+	private String provincia;
 	private String email;
-
-	private ProvinciaDTO provincia;
-
 	private String direccion;
-
-	private String imagen;
+	private String telefono;
+	private Integer estadoCivil;
+	private Integer sexo;
 
 	public Integer getId() {
 		return id;
@@ -37,6 +32,10 @@ public class PerfilDTO implements Serializable {
 
 	public String getNombre() {
 		return nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
 	}
 
 	public String getTelefono() {
@@ -47,7 +46,7 @@ public class PerfilDTO implements Serializable {
 		return email;
 	}
 
-	public ProvinciaDTO getProvincia() {
+	public String getProvincia() {
 		return provincia;
 	}
 
@@ -55,10 +54,14 @@ public class PerfilDTO implements Serializable {
 		return direccion;
 	}
 
-	public String getImagen() {
-		return imagen;
+	public Integer getSexo() {
+		return sexo;
 	}
 
+	public Integer getEstadoCivil() {
+		return estadoCivil;
+	}
+ 
 	/**
 	 * Factorys para crear DTO a partir de Entity
 	 * 
@@ -72,7 +75,7 @@ public class PerfilDTO implements Serializable {
 			result.nombre = perfil.getNombre();
 			result.telefono = perfil.getTelefono();
 			result.email = perfil.getEmail();
-			result.provincia = ProvinciaDTO.Factory.get(perfil.getProvincia());
+			result.provincia = perfil.getProvincia().getNombre();
 			result.direccion = perfil.getDireccion();
 			return result;
 		}

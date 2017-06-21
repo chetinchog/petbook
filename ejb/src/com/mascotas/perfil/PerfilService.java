@@ -12,12 +12,16 @@ import javax.ejb.TransactionManagementType;
 
 import com.mascotas.application.exceptions.BusinessException;
 import com.mascotas.application.exceptions.ValidationError;
+import com.mascotas.estadocivil.entities.EstadoCivil;
+import com.mascotas.estadocivil.repository.EstadoCivilRepository;
 import com.mascotas.perfil.dto.ActualizarPerfilDTO;
 import com.mascotas.perfil.entities.Perfil;
 import com.mascotas.perfil.repository.PerfilesRepository;
 import com.mascotas.provincias.repository.ProvinciasRepository;
 import com.mascotas.seguridad.entities.Usuario;
 import com.mascotas.seguridad.repository.UsuariosRepository;
+import com.mascotas.sexo.entities.Sexo;
+import com.mascotas.sexo.repository.SexoRepository;
 
 /**
  * Servicios de negocio de Perfiles de Usuario
@@ -31,12 +35,18 @@ import com.mascotas.seguridad.repository.UsuariosRepository;
 public class PerfilService {
 	@EJB
 	private UsuariosRepository usuarioRepository;
+	
+	@EJB
+	private EstadoCivilRepository estadoCivilRepository;
 
 	@EJB
 	private PerfilesRepository perfilRepository;
 
 	@EJB
 	private ProvinciasRepository provinciaRepository;
+	
+	@EJB
+	private SexoRepository sexoRepository;
 
 	@EJB
 	private PerfilServiceValidations perfilValidations;
@@ -65,27 +75,28 @@ public class PerfilService {
 	 * 
 	 */
 	public void actualizarPerfil(String login, ActualizarPerfilDTO perfil) throws BusinessException {
-		perfilValidations.validarActualizarPerfil(login, perfil);
-
+		//perfilValidations.validarActualizarPerfil(login, perfil);
+		
 		Perfil perfilEditado = perfilRepository.getByUsuario(login);
-		if (perfilEditado == null) {
+		if(perfilEditado == null) {
 			Usuario usuario = usuarioRepository.get(login);
-
+			
 			perfilEditado = new Perfil();
 			perfilEditado.setUsuario(usuario);
-			perfilRepository.add(perfilEditado);
+			perfilRepository.add(perfilEditado);	
 		}
-
-		perfilEditado.setEmail(perfil.getEmail());
-		perfilEditado.setDireccion(perfil.getDireccion());
+		
 		perfilEditado.setNombre(perfil.getNombre());
+		perfilEditado.setApellido(perfil.getApellido());
+		perfilEditado.setDireccion(perfil.getDireccion());
 		perfilEditado.setTelefono(perfil.getTelefono());
-
-		if (perfil.getProvincia() != null && perfil.getProvincia() > 0) {
-			perfilEditado.setProvincia(provinciaRepository.get(perfil.getProvincia()));
-		} else {
-			perfilEditado.setProvincia(null);
-		}
+		perfilEditado.setEmail(perfil.getEmail());
+		perfilEditado.setId(perfil.getId());
+		perfilEditado.setSexo(sexoRepository.getSexo(perfil.getSexo()));
+		perfilEditado.setEstadoCivil(estadoCivilRepository.getEstadoCivil(perfil.getEstadoCivil()));
+		perfilEditado.setProvincia(provinciaRepository.getProvincia(perfil.getProvincia()));
+		
+		perfilRepository.add(perfilEditado);
 	}
 
 }

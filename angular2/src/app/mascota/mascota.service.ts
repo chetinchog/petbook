@@ -3,6 +3,8 @@ import { Http, Headers, Response } from '@angular/http';
 import { RestBaseService } from '../tools/rest.tools';
 import { Mascota } from '../classes/mascota.class';
 import 'rxjs/add/operator/toPromise';
+import { MascotaNombreDTO } from '../classes/mascotaNombreDTO.class';
+
 
 @Injectable()
 export class MascotaService extends RestBaseService {
@@ -38,7 +40,7 @@ export class MascotaService extends RestBaseService {
   }
 
   guardarMascota(value: Mascota): Promise<Mascota> {
-    if (value.id) {
+    if (value.id && value.id > 0) {
       return this.http.post(MascotaService.serverUrl + this.url + '/' + value.id, JSON.stringify(value), this.getRestHeader())
       .toPromise()
       .then(response => {
@@ -65,4 +67,27 @@ export class MascotaService extends RestBaseService {
       .catch(this.handleError);
     }
   }
+
+  newMascota(mascota: Mascota){
+    this.http
+      .post(
+        MascotaService.serverUrl + this.url,
+        JSON.stringify(mascota),
+        this.getRestHeader()
+      )
+      .toPromise()
+      .then()
+      .catch();
+  }
+
+    buscarMascotaNombre(): Promise<MascotaNombreDTO[]> {
+    return this.http.get(MascotaService.serverUrl + this.url + '/nombre/', this.getRestHeader())
+      .toPromise()
+      .then(response => {
+        return response.json() as MascotaNombreDTO[];
+      })
+      .catch(this.handleError);
+  }
+
+
 }

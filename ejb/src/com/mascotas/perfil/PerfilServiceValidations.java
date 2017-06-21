@@ -69,7 +69,7 @@ public class PerfilServiceValidations {
 					new ValidationError("perfil", "Debe definir el perfil a actualizar."));
 		}
 
-		if (perfil.getProvincia() != null && perfil.getProvincia() > 0) {
+		if (perfil.getProvincia() != null) {
 			Provincia provincia = provinciaRepository.get(perfil.getProvincia());
 			if (provincia == null) {
 				throw new BusinessException("Datos de perfil invalidos.",

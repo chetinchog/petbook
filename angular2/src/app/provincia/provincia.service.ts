@@ -18,5 +18,14 @@ export class ProvinciaService extends RestBaseService {
       })
       .catch(this.handleError);
   }
+
+  buscarProvincia(id: number): Promise<Provincia> {
+    return this.http.get(ProvinciaService.serverUrl + this.provinciasUrl+"/"+id, this.getRestHeader())
+      .toPromise()
+      .then(response => {
+        return response.json() as Provincia;
+      })
+      .catch(this.handleError);
+  }
 }
 

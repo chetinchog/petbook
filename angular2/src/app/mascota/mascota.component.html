@@ -2,27 +2,37 @@
 	<table cellspacing='0' class="masc">
 		<thead>
 			<tr>
-				<th colspan=3><div [style.font-size.em]='2'>Mascotas</div></th>
+				<th colspan=6><div [style.font-size.em]='2'>Mascotas</div></th>
 			</tr>
 			<tr>
 				<th>Nombre</th>
+				<th>Fecha de Nacimiento</th>
 				<th>Descripcion</th>
-				<th></th>
+				<th>Animal</th>
+				<th>Sexo</th>
+				<th>Datos de extravío</th>
 			</tr>
 		</thead>
 		<tbody>
 			<!-- ngFor en el click del renglon se ejecuta un metodo, se le pasa la mascota actual -->
-			<tr *ngFor="let mascota of mascotas">
-				<td>{{mascota.nombre}}</td>
-				<td>{{mascota.descripcion}}</td>
-				<td class="text">
-					<img src="/assets/edit.png" name="editar" [routerLink]="['/nuevaMascota/' + mascota.id ]"
-						 />
-				</td>
-			</tr>
+			<div *ngIf="mascotas">
+				<tr *ngFor="let mascota of mascotas">
+					<td>{{mascota.nombre}}</td>
+					<td>{{mascota.fechaNacimiento}}</td>
+					<td>{{mascota.descripcion}}</td>
+					<td>{{mascota.tipoAnimal}}</td>
+					<td>{{mascota.sexo}}</td>
+					<td>{{mascota.textoPerdido!=null ? mascota.textoPerdido : "NO"}}</td>
+					<td class="text">
+						<img src="/assets/edit.png" name="editar" [routerLink]="['/nuevaMascota/' + mascota.id ]"
+							/>
+					</td>
+				</tr>
+			</div>
+				
 		</tbody>
 	</table>
 	<button class="btn btn-success" [routerLink]="['/nuevaMascota']">Nueva</button>
-	<button class="btn btn-default" [routerLink]="['/inicio']" >Volver</button>	
+	<button class="btn btn-default" [routerLink]="['/']" >Volver</button>	
 </div>
 

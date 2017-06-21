@@ -9,6 +9,9 @@ public class ActualizarPerfilDTO {
 	private String email;
 	private String direccion;
 	private Integer provincia;
+	public String apellido;
+	public Integer sexo;
+	public Integer estadoCivil;
 
 	public Integer getId() {
 		return id;
@@ -58,6 +61,34 @@ public class ActualizarPerfilDTO {
 		this.provincia = provincia;
 	}
 
+	
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public Integer getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(Integer sexo) {
+		this.sexo = sexo;
+	}
+
+	public Integer getEstadoCivil() {
+		return estadoCivil;
+	}
+
+	public void setEstadoCivil(Integer estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
+
+
+
 	/**
 	 * Factorys para crear DTO a partir de Entity
 	 * 
@@ -69,13 +100,21 @@ public class ActualizarPerfilDTO {
 			ActualizarPerfilDTO result = new ActualizarPerfilDTO();
 			result.id = perfil.getId();
 			result.nombre = perfil.getNombre();
+			result.apellido = perfil.getApellido();
+			if(perfil.getSexo() != null && perfil.getSexo().getId() > 0) {
+				result.sexo = perfil.getSexo().getId();
+			}
+			if(perfil.getEstadoCivil() != null && perfil.getEstadoCivil().getId() > 0) {
+				result.estadoCivil = perfil.getEstadoCivil().getId();
+			}
 			result.telefono = perfil.getTelefono();
 			result.email = perfil.getEmail();
 			result.direccion = perfil.getDireccion();
-			if (perfil.getProvincia() != null) {
+			if (perfil.getProvincia() != null && perfil.getProvincia().getId() > 0) {
 				result.provincia = perfil.getProvincia().getId();
 			}
 			return result;
 		}
 	}
 }
+

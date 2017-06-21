@@ -23,6 +23,33 @@ public class MascotaDTO implements Serializable {
 	private String nombre;
 	private String fechaNacimiento;
 	private String descripcion;
+	private String textoPerdido;
+	private Integer sexo;
+	private Integer tipoAnimal;
+
+	public Integer getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(Integer sexo) {
+		this.sexo = sexo;
+	}
+
+	public Integer getTipoAnimal() {
+		return tipoAnimal;
+	}
+
+	public void setTipoAnimal(Integer tipoAnimal) {
+		this.tipoAnimal = tipoAnimal;
+	}
+
+	public String getTextoPerdido() {
+		return textoPerdido;
+	}
+
+	public void setTextoPerdido(String textoPerdido) {
+		this.textoPerdido = textoPerdido;
+	}
 
 	public Integer getId() {
 		return id;
@@ -71,6 +98,9 @@ public class MascotaDTO implements Serializable {
 				result.fechaNacimiento = StringUtils.DATE_FORMAT.format(mascota.getFechaNacimiento());
 			}
 			result.descripcion = mascota.getDescripcion();
+			result.textoPerdido = mascota.getTextoPerdido();
+			result.sexo = mascota.getSexo().getId();
+			result.tipoAnimal = mascota.getTipoAnimal().getId();
 			return result;
 		}
 

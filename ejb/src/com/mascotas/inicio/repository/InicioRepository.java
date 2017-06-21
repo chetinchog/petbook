@@ -67,4 +67,12 @@ public class InicioRepository implements Repositorio<Integer, Estado> {
 		query.setParameter("fecha", fecha);
 		return query.getSingleResult();
 	}
+
+	public List<Estado> getLastEstados(Long fecha) {
+		String q = "SELECT e from " + Estado.class.getName() +
+				" e WHERE e.fecha > :fecha ORDER BY e.fecha DESC";
+		TypedQuery<Estado> query = entityManager.createQuery(q, Estado.class);
+		query.setParameter("fecha", fecha);
+		return query.getResultList();
+	}
 }

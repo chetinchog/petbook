@@ -58,6 +58,27 @@ public class InicioController {
 	}
 
 	/**
+	 * Busca los últimos Estados.
+	 * 
+	 * @return
+	 * @throws NamingException
+	 */
+	@Path("/last/{fecha}")
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response getLastEstados(@PathParam("fecha") Long id) throws NamingException {
+		try {
+			return Response.ok().entity(inicioService.findLastEstados(id)).build();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			return Response.status(500).entity(FormError.processError(e)).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(500).entity(FormError.processError(e)).build();
+		}
+	}
+	
+	/**
 	 * Graba un estado a la base de datos.
 	 * 
 	 * @return

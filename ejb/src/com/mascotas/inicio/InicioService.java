@@ -64,4 +64,11 @@ public class InicioService {
 	public void eliminarMascota(Long id) {
 		inicioRepository.remove(inicioRepository.get(id));
 	}
+
+	public List<EstadoDTO> findLastEstados(Long fecha) throws BusinessException {
+
+		List<Estado> estado = inicioRepository.getLastEstados(fecha);
+
+		return EstadoDTO.Factory.get(estado);
+	}
 }

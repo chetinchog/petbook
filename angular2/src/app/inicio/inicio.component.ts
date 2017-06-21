@@ -88,8 +88,6 @@ export class InicioComponent implements OnInit {
             this.mascota = mascota.nombre;
             this.generarEstado();
           });
-        
-        setTimeout(() => this.getEstados(), 1000);
       }
     }
     catch(e){
@@ -127,7 +125,13 @@ export class InicioComponent implements OnInit {
   }
 
   newEstado(estado: Estado) {
-    this.inicioService.newEstado(estado);
+    this.inicioService
+      .newEstado(estado)
+      .then(
+        () => {
+          this.reloadLast();
+        }
+      );
   }
 
   delete(id) {
@@ -149,5 +153,20 @@ export class InicioComponent implements OnInit {
     if (this.text != undefined) {
       this.contador = this.text.length / 255 * 100;
     }  
+  }
+
+  reloadLast() {
+    this.inicioService
+      .getLastEstados(this.estados[0].fecha)
+      .then(
+        estados => {
+          this.estados = estados.concat(this.estados);
+        }
+      )
+      .catch(
+        error => {
+          this.errorMessage = <any>error
+        }
+      )
   }
 }

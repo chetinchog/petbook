@@ -13,7 +13,23 @@ export class InicioService extends RestBaseService {
   getEstados(): Promise<Estado[]> {
     return this.http
       .get(
-        InicioService.serverUrl + this.url, this.getRestHeader()
+        InicioService.serverUrl + this.url, 
+        this.getRestHeader()
+      )
+      .toPromise()
+      .then(
+        response => {
+          return response.json() as Estado[];
+        }
+      )
+      .catch(this.handleError);
+  }
+
+  getLastEstados(fecha): Promise<Estado[]> {
+    return this.http
+      .get(
+        InicioService.serverUrl + this.url + '/last/' + fecha, 
+        this.getRestHeader()
       )
       .toPromise()
       .then(
@@ -25,7 +41,7 @@ export class InicioService extends RestBaseService {
   }
 
   newEstado(estado: Estado) {
-    this.http
+    return this.http
       .post(
         InicioService.serverUrl + this.url,
         JSON.stringify(estado),

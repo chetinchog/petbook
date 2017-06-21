@@ -6,6 +6,8 @@
 .masc {
 	box-shadow: 3px 3px 20px black;
 	border-radius: 10px;
+	text-align: center;
+	margin: 40px auto;
 }
 
 .container {
@@ -21,6 +23,7 @@
 	padding: 10px;
 	width: 80%;
 	margin: 30px 10%;
+	text-align: center;
 }
 
 body {

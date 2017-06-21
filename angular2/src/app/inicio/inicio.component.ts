@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { MascotaService } from '../mascota/mascota.service';
 import { Mascota } from '../classes/mascota.class';
 
-/* By MM */
+/* By MM! */
 
 @Component({
   selector: 'app-inicio',
